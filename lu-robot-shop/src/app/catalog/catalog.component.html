@@ -1,10 +1,10 @@
 <div class="container">
   <div class="filters">
-    <button class="button" (click)="filter='Heads'">Heads</button>
-    <button class="button" (click)="filter='Arms'">Arms</button>
-    <button class="button" (click)="filter='Torsos'">Torsos</button>
-    <button class="button" (click)="filter='Bases'">Bases</button>
-    <button class="button" (click)="filter=''">All</button>
+    <button class="button" routerLink = "/catalog"[queryParams]="{filter: 'Heads'}">Heads</button>
+    <button class="button" routerLink = "/catalog" [queryParams]="{filter: 'Arms'}">Arms</button>
+    <button class="button" routerLink = "/catalog" [queryParams]="{filter: 'Torsos'}">Torsos</button>
+    <button class="button" routerLink = "/catalog" [queryParams]="{filter: 'Bases'}">Bases</button>
+    <button class="button" routerLink = "/catalog">All</button>
   </div>
   
   

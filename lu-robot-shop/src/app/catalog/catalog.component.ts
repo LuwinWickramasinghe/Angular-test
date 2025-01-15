@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IProduct } from './product.model';
 import { ProductService } from './product.service';
 import { CartService } from '../cart/cart.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-catalog',
@@ -13,15 +14,21 @@ export class CatalogComponent {
   filter: string = '';
   cart: IProduct[] = [];
 
-  constructor(private cartSvc: CartService, private productSvc: ProductService){
+  constructor(
+    private cartSvc: CartService, 
+    private productSvc: ProductService,
+    private router: Router,
+    private route: ActivatedRoute
+  ){
     
   }
 
-
-  ngOnInit(){
-    this.productSvc.getProducts().subscribe(products => {
+  ngOnInit() {
+    this.productSvc.getProducts().subscribe((products) => {
       this.products = products;
-
+    });
+    this.route.queryParams.subscribe((params) => {
+      this.filter = params['filter'] ?? '';
     })
   }
 
@@ -34,5 +41,6 @@ export class CatalogComponent {
 
   addToCart(product:IProduct) {
     this.cartSvc.addToCart(product);
+    this.router.navigate(['/cart']);
   }
 }
