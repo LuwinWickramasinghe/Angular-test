@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IProduct } from './product.model';
+import { CartService } from '../cart.service';
+import { ProductService } from './product.service';
 
 @Component({
   selector: 'app-catalog',
@@ -11,7 +13,7 @@ export class CatalogComponent {
   filter: string = '';
   cart: IProduct[] = [];
 
-  constructor(){
+  constructor(private cartSvc: CartService, private productSvc: ProductService){
     this.products = [
       {
         id: 1,
@@ -189,6 +191,14 @@ export class CatalogComponent {
     ];
   }
 
+
+  ngOnInit(){
+    this.productSvc.getProducts().subscribe(products => {
+      this.products = products;
+
+    })
+  }
+
   getFilteredProducts() {
     return this.filter === ''
     ? this.products
@@ -197,7 +207,6 @@ export class CatalogComponent {
   }
 
   addToCart(product:IProduct) {
-    this.cart.push(product);
-    console.log(`product ${product.name} added to cart.`);
+    this.cartSvc.addToCart(product);
   }
 }
