@@ -10,7 +10,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { CartComponent } from './cart/cart.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { SignInComponent } from './user/sign-in/sign-in.component';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -20,12 +20,13 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
     SiteHeaderComponent,
     ProductDetailsComponent,
     CartComponent,
-    SignInComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    UserModule
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent]
